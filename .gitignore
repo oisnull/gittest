@@ -1,0 +1,14 @@
+﻿################################################################################
+# This .gitignore file was automatically created by Microsoft(R) Visual Studio.
+################################################################################
+
+/net_test_projects/OperationExecutor/.vs
+/net_test_projects/OperationExecutor/Operation.Factory/bin/Debug
+/net_test_projects/OperationExecutor/Operation.Factory/obj/Debug
+/net_test_projects/OperationExecutor/Operation.Factory.Implement/bin/Debug
+/net_test_projects/OperationExecutor/Operation.Factory.Implement/obj/Debug
+/net_test_projects/OperationExecutor/Operation.Factory.Implement2/bin/Debug
+/net_test_projects/OperationExecutor/Operation.Factory.Implement2/obj/Debug
+/net_test_projects/OperationExecutor/Operation.WebTest/bin
+/net_test_projects/OperationExecutor/Operation.WebTest/obj/Debug
+/net_test_projects/OperationExecutor/packages
