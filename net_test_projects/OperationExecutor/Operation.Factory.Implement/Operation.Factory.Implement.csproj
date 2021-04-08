@@ -51,4 +51,7 @@
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <PropertyGroup>
+    <PostBuildEvent>xcopy "$(ProjectDir)\bin\Debug\*.*" "$(ProjectDir)..\Operation.WebTest\App_Data\Implement\" /S /Y /d/i</PostBuildEvent>
+  </PropertyGroup>
 </Project>

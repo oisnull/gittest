@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Operation.Factory
 {
-    public abstract class AbstractOperation : ICustomOperation
+    public abstract class AbstractOperation : MarshalByRefObject, ICustomOperation
     {
         public OperationResult Execute()
         {

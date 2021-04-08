@@ -2,6 +2,7 @@
 using Operation.Factory.Models;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
@@ -10,16 +11,23 @@ namespace Operation.WebTest.Controllers
 {
     public class HomeController : Controller
     {
+        static readonly string PluginsWorkDirectory = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "App_Data");
+
         public ActionResult Test()
         {
-            AssembliesManager assembliesManager = new AssembliesManager(@"E:\ExtInfo\github\gittest\net_test_projects\OperationExecutor\Operation.Factory.Implement\bin\Debug\Operation.Factory.Implement.dll", "Operation.Factory.Implement.UmsPublishFeedOperation");
-            OperationExecuteResponse response = assembliesManager.Execute();
+            Dictionary<string, string> requestParams = new Dictionary<string, string>()
+            {
+                {"InputParam1","input test 1" },
+                {"InputParam2","input test 2" },
+            };
+            AssembliesManager assembliesManager = new AssembliesManager($"{PluginsWorkDirectory}\\Implement\\Operation.Factory.Implement.dll", "Operation.Factory.Implement.UmsPublishFeedOperation");
+            OperationExecuteResponse response = assembliesManager.Execute(requestParams);
             return Json(response, JsonRequestBehavior.AllowGet);
         }
 
         public ActionResult Test2()
         {
-            AssembliesManager assembliesManager = new AssembliesManager(@"E:\ExtInfo\github\gittest\net_test_projects\OperationExecutor\Operation.Factory.Implement2\bin\Debug\Operation.Factory.Implement2.dll", "Operation.Factory.Implement2.SetWorkflowProcessDateOperation");
+            AssembliesManager assembliesManager = new AssembliesManager($"{PluginsWorkDirectory}\\Implement2\\Operation.Factory.Implement2.dll", "Operation.Factory.Implement2.SetWorkflowProcessDateOperation");
             OperationExecuteResponse response = assembliesManager.Execute();
             return Json(response, JsonRequestBehavior.AllowGet);
         }

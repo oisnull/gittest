@@ -15,8 +15,7 @@ namespace Operation.Factory
 {
     public class AssembliesManager
     {
-        private string _baseWorkDirectory = @"E:\vscode\wp-test";
-
+        public string WorkRootDirectory { get; private set; }
         public string AssemblyFullPath { get; private set; }
         public string ClassName { get; set; }
 
@@ -25,23 +24,44 @@ namespace Operation.Factory
             if (string.IsNullOrEmpty(assemblyPath?.Trim()))
                 throw new ArgumentNullException("assemblyPath");
 
+            if (!Path.IsPathRooted(assemblyPath))
+                throw new Exception($"Invalid path of {this.AssemblyFullPath}, should be absolute path: D:\\**\\**.");
+
             if (string.IsNullOrEmpty(className?.Trim()))
                 throw new ArgumentNullException("className");
 
-            if (Path.IsPathRooted(assemblyPath))
+            this.AssemblyFullPath = assemblyPath;
+            this.ClassName = className;
+            this.SetWorkRootDirectory(null);
+        }
+
+        public void SetWorkRootDirectory(string workRootFullPath)
+        {
+            if (string.IsNullOrEmpty(workRootFullPath))
             {
-                this.AssemblyFullPath = assemblyPath;
+                this.WorkRootDirectory = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "App_Data");
+                return;
+            }
+
+            if (!Path.IsPathRooted(workRootFullPath))
+            {
+                throw new Exception($"Invalid path of {workRootFullPath}, should be absolute path: D:\\**\\**.");
+            }
+            this.WorkRootDirectory = workRootFullPath;
+        }
+
+        public OperationExecuteResponse Execute(Dictionary<string, string> requestParameters = null, bool useProxy = true)
+        {
+            ICustomOperation operation = null;
+            if (useProxy)
+            {
+                operation = CreateProxyInstanceForOperation();
             }
             else
             {
-                this.AssemblyFullPath = Path.Combine(_baseWorkDirectory, assemblyPath);
+                operation = CreateInstanceForOperation();
             }
-            this.ClassName = className;
-        }
 
-        public OperationExecuteResponse Execute(Dictionary<string, string> requestParameters = null)
-        {
-            ICustomOperation operation = CreateInstanceForOperation();
             this.SetInputParameters(operation, requestParameters);
 
             OperationResult result = operation.Execute();
@@ -127,6 +147,24 @@ namespace Operation.Factory
             Assembly asm = Assembly.LoadFrom(this.AssemblyFullPath);
             Type type = asm.GetType(this.ClassName, true, true);
             return asm.CreateInstance(type.FullName) as ICustomOperation;
+        }
+
+        private ICustomOperation CreateProxyInstanceForOperation()
+        {
+            string basePath = Path.GetDirectoryName(this.AssemblyFullPath);
+            AppDomainSetup setup = AppDomain.CurrentDomain.SetupInformation;
+            setup.ApplicationName = "OperationFactoryTemp";
+            setup.ApplicationBase = basePath;
+            setup.PrivateBinPath = basePath;
+            setup.ShadowCopyFiles = "true";
+            setup.ShadowCopyDirectories = this.WorkRootDirectory;
+            setup.CachePath = this.WorkRootDirectory;
+            //setup.ConfigurationFile = AppDomain.CurrentDomain.SetupInformation.ConfigurationFile;
+
+            //Evidence evidence = new Evidence(AppDomain.CurrentDomain.Evidence);
+            //PermissionSet grantSet = new PermissionSet(PermissionState.Unrestricted);
+            AppDomain sandboxDomain = AppDomain.CreateDomain($"{setup.ApplicationName}_Domain_{Guid.NewGuid()}", null, setup);
+            return sandboxDomain.CreateInstanceFromAndUnwrap(this.AssemblyFullPath, this.ClassName, true, BindingFlags.Default, null, null, null, null) as ICustomOperation;
         }
     }
 }

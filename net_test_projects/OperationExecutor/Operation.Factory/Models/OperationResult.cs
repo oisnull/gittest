@@ -2,7 +2,7 @@
 
 namespace Operation.Factory.Models
 {
-    public class OperationResult
+    public class OperationResult : MarshalByRefObject
     {
         public OperationResultType Type { get; private set; }
         public string Message { get; private set; }
