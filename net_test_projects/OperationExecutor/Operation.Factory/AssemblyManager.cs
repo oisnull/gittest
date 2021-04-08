@@ -5,21 +5,18 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Reflection;
-using System.Security;
-using System.Security.Permissions;
-using System.Security.Policy;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace Operation.Factory
 {
-    public class AssembliesManager
+    public class AssemblyManager : MarshalByRefObject
     {
-        public string WorkRootDirectory { get; private set; }
+        //public string WorkRootDirectory { get; private set; }
         public string AssemblyFullPath { get; private set; }
         public string ClassName { get; set; }
 
-        public AssembliesManager(string assemblyPath, string className)
+        public AssemblyManager(string assemblyPath, string className)
         {
             if (string.IsNullOrEmpty(assemblyPath?.Trim()))
                 throw new ArgumentNullException("assemblyPath");
@@ -32,35 +29,27 @@ namespace Operation.Factory
 
             this.AssemblyFullPath = assemblyPath;
             this.ClassName = className;
-            this.SetWorkRootDirectory(null);
+            //this.SetWorkRootDirectory(null);
         }
 
-        public void SetWorkRootDirectory(string workRootFullPath)
-        {
-            if (string.IsNullOrEmpty(workRootFullPath))
-            {
-                this.WorkRootDirectory = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "App_Data");
-                return;
-            }
+        //public void SetWorkRootDirectory(string workRootFullPath)
+        //{
+        //    if (string.IsNullOrEmpty(workRootFullPath))
+        //    {
+        //        this.WorkRootDirectory = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "App_Data");
+        //        return;
+        //    }
 
-            if (!Path.IsPathRooted(workRootFullPath))
-            {
-                throw new Exception($"Invalid path of {workRootFullPath}, should be absolute path: D:\\**\\**.");
-            }
-            this.WorkRootDirectory = workRootFullPath;
-        }
+        //    if (!Path.IsPathRooted(workRootFullPath))
+        //    {
+        //        throw new Exception($"Invalid path of {workRootFullPath}, should be absolute path: D:\\**\\**.");
+        //    }
+        //    this.WorkRootDirectory = workRootFullPath;
+        //}
 
-        public OperationExecuteResponse Execute(Dictionary<string, string> requestParameters = null, bool useProxy = true)
+        public OperationExecuteResponse Execute(Dictionary<string, string> requestParameters = null)
         {
-            ICustomOperation operation = null;
-            if (useProxy)
-            {
-                operation = CreateProxyInstanceForOperation();
-            }
-            else
-            {
-                operation = CreateInstanceForOperation();
-            }
+            ICustomOperation operation = CreateInstanceForOperation();
 
             this.SetInputParameters(operation, requestParameters);
 
@@ -149,22 +138,22 @@ namespace Operation.Factory
             return asm.CreateInstance(type.FullName) as ICustomOperation;
         }
 
-        private ICustomOperation CreateProxyInstanceForOperation()
-        {
-            string basePath = Path.GetDirectoryName(this.AssemblyFullPath);
-            AppDomainSetup setup = AppDomain.CurrentDomain.SetupInformation;
-            setup.ApplicationName = "OperationFactoryTemp";
-            setup.ApplicationBase = basePath;
-            setup.PrivateBinPath = basePath;
-            setup.ShadowCopyFiles = "true";
-            setup.ShadowCopyDirectories = this.WorkRootDirectory;
-            setup.CachePath = this.WorkRootDirectory;
-            //setup.ConfigurationFile = AppDomain.CurrentDomain.SetupInformation.ConfigurationFile;
+        //private ICustomOperation CreateProxyInstanceForOperation()
+        //{
+        //    string basePath = Path.GetDirectoryName(this.AssemblyFullPath);
+        //    AppDomainSetup setup = AppDomain.CurrentDomain.SetupInformation;
+        //    setup.ApplicationName = "OperationFactoryTemp";
+        //    setup.ApplicationBase = basePath;
+        //    setup.PrivateBinPath = basePath;
+        //    setup.ShadowCopyFiles = "true";
+        //    setup.ShadowCopyDirectories = this.WorkRootDirectory;
+        //    setup.CachePath = this.WorkRootDirectory;
+        //    //setup.ConfigurationFile = AppDomain.CurrentDomain.SetupInformation.ConfigurationFile;
 
-            //Evidence evidence = new Evidence(AppDomain.CurrentDomain.Evidence);
-            //PermissionSet grantSet = new PermissionSet(PermissionState.Unrestricted);
-            AppDomain sandboxDomain = AppDomain.CreateDomain($"{setup.ApplicationName}_Domain_{Guid.NewGuid()}", null, setup);
-            return sandboxDomain.CreateInstanceFromAndUnwrap(this.AssemblyFullPath, this.ClassName, true, BindingFlags.Default, null, null, null, null) as ICustomOperation;
-        }
+        //    //Evidence evidence = new Evidence(AppDomain.CurrentDomain.Evidence);
+        //    //PermissionSet grantSet = new PermissionSet(PermissionState.Unrestricted);
+        //    AppDomain sandboxDomain = AppDomain.CreateDomain($"{setup.ApplicationName}_Domain_{Guid.NewGuid()}", null, setup);
+        //    return sandboxDomain.CreateInstanceFromAndUnwrap(this.AssemblyFullPath, this.ClassName, true, BindingFlags.Default, null, null, null, null) as ICustomOperation;
+        //}
     }
 }

@@ -22,9 +22,9 @@ namespace Operation.Factory.Implement
 
         public override OperationResult ExecuteCore()
         {
-            OutputParam1 = InputParam1;
-            OutputParam2 = InputParam2;
-            return new OperationResult(OperationResultType.Success, "UmsPublishFeedOperation2");
+            OutputParam1 = "bbb " + InputParam1;
+            OutputParam2 = "Output " + InputParam2;
+            return new OperationResult(OperationResultType.Success, "UmsPublishFeedOperation4");
         }
     }
 }

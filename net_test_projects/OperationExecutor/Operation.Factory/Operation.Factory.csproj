@@ -42,7 +42,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AbstractOperation.cs" />
-    <Compile Include="AssembliesManager.cs" />
+    <Compile Include="AssemblyManager.cs" />
+    <Compile Include="AssemblyProxyManager.cs" />
     <Compile Include="Configs\EnvironmentConfig.cs" />
     <Compile Include="Models\OperationExecuteResponse.cs" />
     <Compile Include="Models\OperationExecuteRequest.cs" />

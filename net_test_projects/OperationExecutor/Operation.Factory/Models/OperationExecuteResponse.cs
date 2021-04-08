@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Operation.Factory.Models
 {
-    public class OperationExecuteResponse
+    public class OperationExecuteResponse : MarshalByRefObject
     {
         public OperationResult Result { get; set; }
         public Dictionary<string, string> Outputs { get; set; }

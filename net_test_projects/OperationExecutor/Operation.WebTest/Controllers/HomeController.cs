@@ -1,4 +1,5 @@
-﻿using Operation.Factory;
+﻿using Newtonsoft.Json;
+using Operation.Factory;
 using Operation.Factory.Models;
 using System;
 using System.Collections.Generic;
@@ -20,15 +21,21 @@ namespace Operation.WebTest.Controllers
                 {"InputParam1","input test 1" },
                 {"InputParam2","input test 2" },
             };
-            AssembliesManager assembliesManager = new AssembliesManager($"{PluginsWorkDirectory}\\Implement\\Operation.Factory.Implement.dll", "Operation.Factory.Implement.UmsPublishFeedOperation");
+            AssemblyProxyManager proxyManager = new AssemblyProxyManager();
+            AssemblyManager assembliesManager = proxyManager.CreateInstance($"{PluginsWorkDirectory}\\Implement\\Operation.Factory.Implement.dll", "Operation.Factory.Implement.UmsPublishFeedOperation");
             OperationExecuteResponse response = assembliesManager.Execute(requestParams);
-            return Json(response, JsonRequestBehavior.AllowGet);
+            string outputs = JsonConvert.SerializeObject(response);
+            proxyManager.UnloadInstance();
+            return Content(outputs);
         }
 
         public ActionResult Test2()
         {
-            AssembliesManager assembliesManager = new AssembliesManager($"{PluginsWorkDirectory}\\Implement2\\Operation.Factory.Implement2.dll", "Operation.Factory.Implement2.SetWorkflowProcessDateOperation");
+            AssemblyProxyManager proxyManager = new AssemblyProxyManager();
+            AssemblyManager assembliesManager = proxyManager.CreateInstance($"{PluginsWorkDirectory}\\Implement2\\Operation.Factory.Implement2.dll", "Operation.Factory.Implement2.SetWorkflowProcessDateOperation");
             OperationExecuteResponse response = assembliesManager.Execute();
+            string outputs = JsonConvert.SerializeObject(response);
+            proxyManager.UnloadInstance();
             return Json(response, JsonRequestBehavior.AllowGet);
         }
 
