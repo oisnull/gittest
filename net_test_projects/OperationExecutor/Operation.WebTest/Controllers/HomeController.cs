@@ -21,6 +21,25 @@ namespace Operation.WebTest.Controllers
                 {"InputParam1","input test 1" },
                 {"InputParam2","input test 2" },
             };
+            AssemblyManagerV2 assembliesManager = new AssemblyManagerV2($"{PluginsWorkDirectory}\\Implement\\Operation.Factory.Implement.dll", "Operation.Factory.Implement.UmsPublishFeedOperation");
+            OperationExecuteResponse response = assembliesManager.Execute(requestParams);
+            return Json(response, JsonRequestBehavior.AllowGet);
+        }
+
+        public ActionResult Test2()
+        {
+            AssemblyManagerV2 assembliesManager = new AssemblyManagerV2($"{PluginsWorkDirectory}\\Implement2\\Operation.Factory.Implement2.dll", "Operation.Factory.Implement2.SetWorkflowProcessDateOperation");
+            OperationExecuteResponse response = assembliesManager.Execute();
+            return Json(response, JsonRequestBehavior.AllowGet);
+        }
+
+        public ActionResult ProxyTest()
+        {
+            Dictionary<string, string> requestParams = new Dictionary<string, string>()
+            {
+                {"InputParam1","input test 1" },
+                {"InputParam2","input test 2" },
+            };
             AssemblyProxyManager proxyManager = new AssemblyProxyManager();
             AssemblyManager assembliesManager = proxyManager.CreateInstance($"{PluginsWorkDirectory}\\Implement\\Operation.Factory.Implement.dll", "Operation.Factory.Implement.UmsPublishFeedOperation");
             OperationExecuteResponse response = assembliesManager.Execute(requestParams);
@@ -29,14 +48,14 @@ namespace Operation.WebTest.Controllers
             return Content(outputs);
         }
 
-        public ActionResult Test2()
+        public ActionResult ProxyTest2()
         {
             AssemblyProxyManager proxyManager = new AssemblyProxyManager();
             AssemblyManager assembliesManager = proxyManager.CreateInstance($"{PluginsWorkDirectory}\\Implement2\\Operation.Factory.Implement2.dll", "Operation.Factory.Implement2.SetWorkflowProcessDateOperation");
             OperationExecuteResponse response = assembliesManager.Execute();
             string outputs = JsonConvert.SerializeObject(response);
             proxyManager.UnloadInstance();
-            return Json(response, JsonRequestBehavior.AllowGet);
+            return Content(outputs);
         }
 
         // GET: Home

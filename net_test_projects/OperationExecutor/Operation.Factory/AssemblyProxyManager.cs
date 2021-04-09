@@ -1,5 +1,4 @@
-﻿using Operation.Factory.Interfaces;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -55,29 +54,4 @@ namespace Operation.Factory
             }
         }
     }
-
-    //public class AssemblyProxyManager
-    //{
-    //    public static AssemblyManager CreateInstance(string assemblyFullPath, string className)
-    //    {
-    //        //string basePath = Path.GetDirectoryName(assemblyFullPath);
-    //        string currentBinPath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "bin");
-    //        AppDomainSetup setup = AppDomain.CurrentDomain.SetupInformation;
-    //        setup.ApplicationName = "OperationFactoryTemp";
-    //        //setup.ApplicationBase = basePath;
-    //        //setup.PrivateBinPath = basePath;
-    //        setup.ApplicationBase = currentBinPath;
-    //        setup.PrivateBinPath = currentBinPath;
-    //        //setup.ShadowCopyFiles = "true";
-    //        //setup.ShadowCopyDirectories = currentBinPath;
-    //        //setup.CachePath = currentBinPath;
-    //        //setup.ConfigurationFile = AppDomain.CurrentDomain.SetupInformation.ConfigurationFile;
-
-    //        //Evidence evidence = new Evidence(AppDomain.CurrentDomain.Evidence);
-    //        //PermissionSet grantSet = new PermissionSet(PermissionState.Unrestricted);
-    //        AppDomain sandboxDomain = AppDomain.CreateDomain($"{setup.ApplicationName}_Domain_{Guid.NewGuid()}", null, setup);
-    //        Type type = typeof(AssemblyManager);
-    //        return sandboxDomain.CreateInstanceAndUnwrap(type.Assembly.FullName, type.FullName, true, BindingFlags.Default, null, new object[] { assemblyFullPath, className }, null, null) as AssemblyManager;
-    //    }
-    //}
 }
