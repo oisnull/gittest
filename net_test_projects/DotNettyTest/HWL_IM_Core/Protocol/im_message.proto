@@ -36,9 +36,9 @@ message ImMessageContext{
 		ImMessageResponse response = 30;
     }
 	oneof body2 {
-		ImUserValidateMessage validateMessage = 40;
-        ImUserChatMessage userChatMessage = 50;
-        ImGroupChatMessage groupChatMessage = 60;
+		ImValidateMessage validateMessage = 40;
+        ImUserMessage userMessage = 50;
+        ImGroupMessage groupMessage = 60;
     }
 }
 
@@ -56,12 +56,12 @@ message ImMessageResponse {
     ImMessageSource source = 30;
 }
 
-message ImUserValidateMessage {
+message ImValidateMessage {
     uint64 userId = 30;
     string token = 40;
 }
 
-message ImUserChatMessage {
+message ImUserMessage {
     uint64 fromUserId = 10;
     uint64 toUserId = 20;
 	string contentType = 30;
@@ -69,7 +69,7 @@ message ImUserChatMessage {
     uint64 buildTime = 50;
 }
 
-message ImGroupChatMessage {
+message ImGroupMessage {
     uint64 fromUserId = 10;
     string toGroup = 20;
 	string contentType = 30;

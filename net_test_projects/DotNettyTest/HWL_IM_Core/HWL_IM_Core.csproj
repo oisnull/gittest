@@ -244,8 +244,8 @@
     <Compile Include="IMServerEngine.cs" />
     <Compile Include="IMServerEngineOption.cs" />
     <Compile Include="Server\Executor\BaseServerMessageExecutor.cs" />
-    <Compile Include="Server\Executor\GroupChatExecutor.cs" />
-    <Compile Include="Server\Executor\UserChatExecutor.cs" />
+    <Compile Include="Server\Executor\GroupExecutor.cs" />
+    <Compile Include="Server\Executor\UserExecutor.cs" />
     <Compile Include="Server\Executor\ValidateExecutor.cs" />
     <Compile Include="Server\IServerMessageExecutor.cs" />
     <Compile Include="Server\OnlineChannelManager.cs" />

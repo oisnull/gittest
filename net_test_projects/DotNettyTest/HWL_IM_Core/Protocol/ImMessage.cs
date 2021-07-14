@@ -24,42 +24,41 @@ namespace HWL_IM_Core.Protocol {
     static ImMessageReflection() {
       byte[] descriptorData = global::System.Convert.FromBase64String(
           string.Concat(
-            "ChBpbV9tZXNzYWdlLnByb3RvEgxpbWJhc2ljcHJvdG8i6wIKEEltTWVzc2Fn",
+            "ChBpbV9tZXNzYWdlLnByb3RvEgxpbWJhc2ljcHJvdG8i1wIKEEltTWVzc2Fn",
             "ZUNvbnRleHQSKQoEdHlwZRgKIAEoDjIbLmltYmFzaWNwcm90by5JbU1lc3Nh",
             "Z2VUeXBlEisKBGhlYWQYFCABKAsyGy5pbWJhc2ljcHJvdG8uSW1NZXNzYWdl",
             "SGVhZEgAEjMKCHJlc3BvbnNlGB4gASgLMh8uaW1iYXNpY3Byb3RvLkltTWVz",
-            "c2FnZVJlc3BvbnNlSAASPgoPdmFsaWRhdGVNZXNzYWdlGCggASgLMiMuaW1i",
-            "YXNpY3Byb3RvLkltVXNlclZhbGlkYXRlTWVzc2FnZUgBEjoKD3VzZXJDaGF0",
-            "TWVzc2FnZRgyIAEoCzIfLmltYmFzaWNwcm90by5JbVVzZXJDaGF0TWVzc2Fn",
-            "ZUgBEjwKEGdyb3VwQ2hhdE1lc3NhZ2UYPCABKAsyIC5pbWJhc2ljcHJvdG8u",
-            "SW1Hcm91cENoYXRNZXNzYWdlSAFCBwoFYm9keTFCBwoFYm9keTIiZgoNSW1N",
-            "ZXNzYWdlSGVhZBIRCgl0aW1lc3RhbXAYCiABKAQSDgoGY2xpZW50GBQgASgJ",
-            "Eg8KB3Nlc3Npb24YHiABKAkSEAoIbGFuZ3VhZ2UYKCABKAkSDwoHdmVyc2lv",
-            "bhgyIAEoCSJ6ChFJbU1lc3NhZ2VSZXNwb25zZRImCgZzdGF0dXMYCiABKA4y",
-            "Fi5pbWJhc2ljcHJvdG8uSW1TdGF0dXMSDgoGb3V0cHV0GBQgASgJEi0KBnNv",
-            "dXJjZRgeIAEoDjIdLmltYmFzaWNwcm90by5JbU1lc3NhZ2VTb3VyY2UiNgoV",
-            "SW1Vc2VyVmFsaWRhdGVNZXNzYWdlEg4KBnVzZXJJZBgeIAEoBBINCgV0b2tl",
-            "bhgoIAEoCSJ2ChFJbVVzZXJDaGF0TWVzc2FnZRISCgpmcm9tVXNlcklkGAog",
-            "ASgEEhAKCHRvVXNlcklkGBQgASgEEhMKC2NvbnRlbnRUeXBlGB4gASgJEhMK",
-            "C2NvbnRlbnRCb2R5GCggASgJEhEKCWJ1aWxkVGltZRgyIAEoBCJ2ChJJbUdy",
-            "b3VwQ2hhdE1lc3NhZ2USEgoKZnJvbVVzZXJJZBgKIAEoBBIPCgd0b0dyb3Vw",
-            "GBQgASgJEhMKC2NvbnRlbnRUeXBlGB4gASgJEhMKC2NvbnRlbnRCb2R5GCgg",
-            "ASgJEhEKCWJ1aWxkVGltZRgyIAEoBCo8Cg1JbU1lc3NhZ2VUeXBlEgwKCFZh",
-            "bGlkYXRlEAASCAoEVXNlchABEgkKBUdyb3VwEAISCAoEUGluZxADKkoKCElt",
-            "U3RhdHVzEgsKB1N1Y2Nlc3MQABILCgdGYWlsdXJlEAESEgoOU2Vzc2lvbklu",
-            "dmFsaWQQAhIQCgxGb3JjZU9mZmxpbmUQAypCCg9JbU1lc3NhZ2VTb3VyY2US",
-            "CwoHSW5zdGFudBAAEgsKB09mZmxpbmUQARIJCgVSZXRyeRACEgoKBlVua25v",
-            "dxADQjEKFmNvbS5od2wuaW1jb3JlLmltcHJvdG9QAaoCFEhXTF9JTV9Db3Jl",
-            "LlByb3RvY29sYgZwcm90bzM="));
+            "c2FnZVJlc3BvbnNlSAASOgoPdmFsaWRhdGVNZXNzYWdlGCggASgLMh8uaW1i",
+            "YXNpY3Byb3RvLkltVmFsaWRhdGVNZXNzYWdlSAESMgoLdXNlck1lc3NhZ2UY",
+            "MiABKAsyGy5pbWJhc2ljcHJvdG8uSW1Vc2VyTWVzc2FnZUgBEjQKDGdyb3Vw",
+            "TWVzc2FnZRg8IAEoCzIcLmltYmFzaWNwcm90by5JbUdyb3VwTWVzc2FnZUgB",
+            "QgcKBWJvZHkxQgcKBWJvZHkyImYKDUltTWVzc2FnZUhlYWQSEQoJdGltZXN0",
+            "YW1wGAogASgEEg4KBmNsaWVudBgUIAEoCRIPCgdzZXNzaW9uGB4gASgJEhAK",
+            "CGxhbmd1YWdlGCggASgJEg8KB3ZlcnNpb24YMiABKAkiegoRSW1NZXNzYWdl",
+            "UmVzcG9uc2USJgoGc3RhdHVzGAogASgOMhYuaW1iYXNpY3Byb3RvLkltU3Rh",
+            "dHVzEg4KBm91dHB1dBgUIAEoCRItCgZzb3VyY2UYHiABKA4yHS5pbWJhc2lj",
+            "cHJvdG8uSW1NZXNzYWdlU291cmNlIjIKEUltVmFsaWRhdGVNZXNzYWdlEg4K",
+            "BnVzZXJJZBgeIAEoBBINCgV0b2tlbhgoIAEoCSJyCg1JbVVzZXJNZXNzYWdl",
+            "EhIKCmZyb21Vc2VySWQYCiABKAQSEAoIdG9Vc2VySWQYFCABKAQSEwoLY29u",
+            "dGVudFR5cGUYHiABKAkSEwoLY29udGVudEJvZHkYKCABKAkSEQoJYnVpbGRU",
+            "aW1lGDIgASgEInIKDkltR3JvdXBNZXNzYWdlEhIKCmZyb21Vc2VySWQYCiAB",
+            "KAQSDwoHdG9Hcm91cBgUIAEoCRITCgtjb250ZW50VHlwZRgeIAEoCRITCgtj",
+            "b250ZW50Qm9keRgoIAEoCRIRCglidWlsZFRpbWUYMiABKAQqPAoNSW1NZXNz",
+            "YWdlVHlwZRIMCghWYWxpZGF0ZRAAEggKBFVzZXIQARIJCgVHcm91cBACEggK",
+            "BFBpbmcQAypKCghJbVN0YXR1cxILCgdTdWNjZXNzEAASCwoHRmFpbHVyZRAB",
+            "EhIKDlNlc3Npb25JbnZhbGlkEAISEAoMRm9yY2VPZmZsaW5lEAMqQgoPSW1N",
+            "ZXNzYWdlU291cmNlEgsKB0luc3RhbnQQABILCgdPZmZsaW5lEAESCQoFUmV0",
+            "cnkQAhIKCgZVbmtub3cQA0IxChZjb20uaHdsLmltY29yZS5pbXByb3RvUAGq",
+            "AhRIV0xfSU1fQ29yZS5Qcm90b2NvbGIGcHJvdG8z"));
       descriptor = pbr::FileDescriptor.FromGeneratedCode(descriptorData,
           new pbr::FileDescriptor[] { },
           new pbr::GeneratedClrTypeInfo(new[] {typeof(global::HWL_IM_Core.Protocol.ImMessageType), typeof(global::HWL_IM_Core.Protocol.ImStatus), typeof(global::HWL_IM_Core.Protocol.ImMessageSource), }, new pbr::GeneratedClrTypeInfo[] {
-            new pbr::GeneratedClrTypeInfo(typeof(global::HWL_IM_Core.Protocol.ImMessageContext), global::HWL_IM_Core.Protocol.ImMessageContext.Parser, new[]{ "Type", "Head", "Response", "ValidateMessage", "UserChatMessage", "GroupChatMessage" }, new[]{ "Body1", "Body2" }, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::HWL_IM_Core.Protocol.ImMessageContext), global::HWL_IM_Core.Protocol.ImMessageContext.Parser, new[]{ "Type", "Head", "Response", "ValidateMessage", "UserMessage", "GroupMessage" }, new[]{ "Body1", "Body2" }, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::HWL_IM_Core.Protocol.ImMessageHead), global::HWL_IM_Core.Protocol.ImMessageHead.Parser, new[]{ "Timestamp", "Client", "Session", "Language", "Version" }, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::HWL_IM_Core.Protocol.ImMessageResponse), global::HWL_IM_Core.Protocol.ImMessageResponse.Parser, new[]{ "Status", "Output", "Source" }, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::HWL_IM_Core.Protocol.ImUserValidateMessage), global::HWL_IM_Core.Protocol.ImUserValidateMessage.Parser, new[]{ "UserId", "Token" }, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::HWL_IM_Core.Protocol.ImUserChatMessage), global::HWL_IM_Core.Protocol.ImUserChatMessage.Parser, new[]{ "FromUserId", "ToUserId", "ContentType", "ContentBody", "BuildTime" }, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::HWL_IM_Core.Protocol.ImGroupChatMessage), global::HWL_IM_Core.Protocol.ImGroupChatMessage.Parser, new[]{ "FromUserId", "ToGroup", "ContentType", "ContentBody", "BuildTime" }, null, null, null)
+            new pbr::GeneratedClrTypeInfo(typeof(global::HWL_IM_Core.Protocol.ImValidateMessage), global::HWL_IM_Core.Protocol.ImValidateMessage.Parser, new[]{ "UserId", "Token" }, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::HWL_IM_Core.Protocol.ImUserMessage), global::HWL_IM_Core.Protocol.ImUserMessage.Parser, new[]{ "FromUserId", "ToUserId", "ContentType", "ContentBody", "BuildTime" }, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::HWL_IM_Core.Protocol.ImGroupMessage), global::HWL_IM_Core.Protocol.ImGroupMessage.Parser, new[]{ "FromUserId", "ToGroup", "ContentType", "ContentBody", "BuildTime" }, null, null, null)
           }));
     }
     #endregion
@@ -129,11 +128,11 @@ namespace HWL_IM_Core.Protocol {
         case Body2OneofCase.ValidateMessage:
           ValidateMessage = other.ValidateMessage.Clone();
           break;
-        case Body2OneofCase.UserChatMessage:
-          UserChatMessage = other.UserChatMessage.Clone();
+        case Body2OneofCase.UserMessage:
+          UserMessage = other.UserMessage.Clone();
           break;
-        case Body2OneofCase.GroupChatMessage:
-          GroupChatMessage = other.GroupChatMessage.Clone();
+        case Body2OneofCase.GroupMessage:
+          GroupMessage = other.GroupMessage.Clone();
           break;
       }
 
@@ -181,33 +180,33 @@ namespace HWL_IM_Core.Protocol {
     /// <summary>Field number for the "validateMessage" field.</summary>
     public const int ValidateMessageFieldNumber = 40;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public global::HWL_IM_Core.Protocol.ImUserValidateMessage ValidateMessage {
-      get { return body2Case_ == Body2OneofCase.ValidateMessage ? (global::HWL_IM_Core.Protocol.ImUserValidateMessage) body2_ : null; }
+    public global::HWL_IM_Core.Protocol.ImValidateMessage ValidateMessage {
+      get { return body2Case_ == Body2OneofCase.ValidateMessage ? (global::HWL_IM_Core.Protocol.ImValidateMessage) body2_ : null; }
       set {
         body2_ = value;
         body2Case_ = value == null ? Body2OneofCase.None : Body2OneofCase.ValidateMessage;
       }
     }
 
-    /// <summary>Field number for the "userChatMessage" field.</summary>
-    public const int UserChatMessageFieldNumber = 50;
+    /// <summary>Field number for the "userMessage" field.</summary>
+    public const int UserMessageFieldNumber = 50;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public global::HWL_IM_Core.Protocol.ImUserChatMessage UserChatMessage {
-      get { return body2Case_ == Body2OneofCase.UserChatMessage ? (global::HWL_IM_Core.Protocol.ImUserChatMessage) body2_ : null; }
+    public global::HWL_IM_Core.Protocol.ImUserMessage UserMessage {
+      get { return body2Case_ == Body2OneofCase.UserMessage ? (global::HWL_IM_Core.Protocol.ImUserMessage) body2_ : null; }
       set {
         body2_ = value;
-        body2Case_ = value == null ? Body2OneofCase.None : Body2OneofCase.UserChatMessage;
+        body2Case_ = value == null ? Body2OneofCase.None : Body2OneofCase.UserMessage;
       }
     }
 
-    /// <summary>Field number for the "groupChatMessage" field.</summary>
-    public const int GroupChatMessageFieldNumber = 60;
+    /// <summary>Field number for the "groupMessage" field.</summary>
+    public const int GroupMessageFieldNumber = 60;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public global::HWL_IM_Core.Protocol.ImGroupChatMessage GroupChatMessage {
-      get { return body2Case_ == Body2OneofCase.GroupChatMessage ? (global::HWL_IM_Core.Protocol.ImGroupChatMessage) body2_ : null; }
+    public global::HWL_IM_Core.Protocol.ImGroupMessage GroupMessage {
+      get { return body2Case_ == Body2OneofCase.GroupMessage ? (global::HWL_IM_Core.Protocol.ImGroupMessage) body2_ : null; }
       set {
         body2_ = value;
-        body2Case_ = value == null ? Body2OneofCase.None : Body2OneofCase.GroupChatMessage;
+        body2Case_ = value == null ? Body2OneofCase.None : Body2OneofCase.GroupMessage;
       }
     }
 
@@ -235,8 +234,8 @@ namespace HWL_IM_Core.Protocol {
     public enum Body2OneofCase {
       None = 0,
       ValidateMessage = 40,
-      UserChatMessage = 50,
-      GroupChatMessage = 60,
+      UserMessage = 50,
+      GroupMessage = 60,
     }
     private Body2OneofCase body2Case_ = Body2OneofCase.None;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -267,8 +266,8 @@ namespace HWL_IM_Core.Protocol {
       if (!object.Equals(Head, other.Head)) return false;
       if (!object.Equals(Response, other.Response)) return false;
       if (!object.Equals(ValidateMessage, other.ValidateMessage)) return false;
-      if (!object.Equals(UserChatMessage, other.UserChatMessage)) return false;
-      if (!object.Equals(GroupChatMessage, other.GroupChatMessage)) return false;
+      if (!object.Equals(UserMessage, other.UserMessage)) return false;
+      if (!object.Equals(GroupMessage, other.GroupMessage)) return false;
       if (Body1Case != other.Body1Case) return false;
       if (Body2Case != other.Body2Case) return false;
       return Equals(_unknownFields, other._unknownFields);
@@ -281,8 +280,8 @@ namespace HWL_IM_Core.Protocol {
       if (body1Case_ == Body1OneofCase.Head) hash ^= Head.GetHashCode();
       if (body1Case_ == Body1OneofCase.Response) hash ^= Response.GetHashCode();
       if (body2Case_ == Body2OneofCase.ValidateMessage) hash ^= ValidateMessage.GetHashCode();
-      if (body2Case_ == Body2OneofCase.UserChatMessage) hash ^= UserChatMessage.GetHashCode();
-      if (body2Case_ == Body2OneofCase.GroupChatMessage) hash ^= GroupChatMessage.GetHashCode();
+      if (body2Case_ == Body2OneofCase.UserMessage) hash ^= UserMessage.GetHashCode();
+      if (body2Case_ == Body2OneofCase.GroupMessage) hash ^= GroupMessage.GetHashCode();
       hash ^= (int) body1Case_;
       hash ^= (int) body2Case_;
       if (_unknownFields != null) {
@@ -314,13 +313,13 @@ namespace HWL_IM_Core.Protocol {
         output.WriteRawTag(194, 2);
         output.WriteMessage(ValidateMessage);
       }
-      if (body2Case_ == Body2OneofCase.UserChatMessage) {
+      if (body2Case_ == Body2OneofCase.UserMessage) {
         output.WriteRawTag(146, 3);
-        output.WriteMessage(UserChatMessage);
+        output.WriteMessage(UserMessage);
       }
-      if (body2Case_ == Body2OneofCase.GroupChatMessage) {
+      if (body2Case_ == Body2OneofCase.GroupMessage) {
         output.WriteRawTag(226, 3);
-        output.WriteMessage(GroupChatMessage);
+        output.WriteMessage(GroupMessage);
       }
       if (_unknownFields != null) {
         _unknownFields.WriteTo(output);
@@ -342,11 +341,11 @@ namespace HWL_IM_Core.Protocol {
       if (body2Case_ == Body2OneofCase.ValidateMessage) {
         size += 2 + pb::CodedOutputStream.ComputeMessageSize(ValidateMessage);
       }
-      if (body2Case_ == Body2OneofCase.UserChatMessage) {
-        size += 2 + pb::CodedOutputStream.ComputeMessageSize(UserChatMessage);
+      if (body2Case_ == Body2OneofCase.UserMessage) {
+        size += 2 + pb::CodedOutputStream.ComputeMessageSize(UserMessage);
       }
-      if (body2Case_ == Body2OneofCase.GroupChatMessage) {
-        size += 2 + pb::CodedOutputStream.ComputeMessageSize(GroupChatMessage);
+      if (body2Case_ == Body2OneofCase.GroupMessage) {
+        size += 2 + pb::CodedOutputStream.ComputeMessageSize(GroupMessage);
       }
       if (_unknownFields != null) {
         size += _unknownFields.CalculateSize();
@@ -380,21 +379,21 @@ namespace HWL_IM_Core.Protocol {
       switch (other.Body2Case) {
         case Body2OneofCase.ValidateMessage:
           if (ValidateMessage == null) {
-            ValidateMessage = new global::HWL_IM_Core.Protocol.ImUserValidateMessage();
+            ValidateMessage = new global::HWL_IM_Core.Protocol.ImValidateMessage();
           }
           ValidateMessage.MergeFrom(other.ValidateMessage);
           break;
-        case Body2OneofCase.UserChatMessage:
-          if (UserChatMessage == null) {
-            UserChatMessage = new global::HWL_IM_Core.Protocol.ImUserChatMessage();
+        case Body2OneofCase.UserMessage:
+          if (UserMessage == null) {
+            UserMessage = new global::HWL_IM_Core.Protocol.ImUserMessage();
           }
-          UserChatMessage.MergeFrom(other.UserChatMessage);
+          UserMessage.MergeFrom(other.UserMessage);
           break;
-        case Body2OneofCase.GroupChatMessage:
-          if (GroupChatMessage == null) {
-            GroupChatMessage = new global::HWL_IM_Core.Protocol.ImGroupChatMessage();
+        case Body2OneofCase.GroupMessage:
+          if (GroupMessage == null) {
+            GroupMessage = new global::HWL_IM_Core.Protocol.ImGroupMessage();
           }
-          GroupChatMessage.MergeFrom(other.GroupChatMessage);
+          GroupMessage.MergeFrom(other.GroupMessage);
           break;
       }
 
@@ -432,7 +431,7 @@ namespace HWL_IM_Core.Protocol {
             break;
           }
           case 322: {
-            global::HWL_IM_Core.Protocol.ImUserValidateMessage subBuilder = new global::HWL_IM_Core.Protocol.ImUserValidateMessage();
+            global::HWL_IM_Core.Protocol.ImValidateMessage subBuilder = new global::HWL_IM_Core.Protocol.ImValidateMessage();
             if (body2Case_ == Body2OneofCase.ValidateMessage) {
               subBuilder.MergeFrom(ValidateMessage);
             }
@@ -441,21 +440,21 @@ namespace HWL_IM_Core.Protocol {
             break;
           }
           case 402: {
-            global::HWL_IM_Core.Protocol.ImUserChatMessage subBuilder = new global::HWL_IM_Core.Protocol.ImUserChatMessage();
-            if (body2Case_ == Body2OneofCase.UserChatMessage) {
-              subBuilder.MergeFrom(UserChatMessage);
+            global::HWL_IM_Core.Protocol.ImUserMessage subBuilder = new global::HWL_IM_Core.Protocol.ImUserMessage();
+            if (body2Case_ == Body2OneofCase.UserMessage) {
+              subBuilder.MergeFrom(UserMessage);
             }
             input.ReadMessage(subBuilder);
-            UserChatMessage = subBuilder;
+            UserMessage = subBuilder;
             break;
           }
           case 482: {
-            global::HWL_IM_Core.Protocol.ImGroupChatMessage subBuilder = new global::HWL_IM_Core.Protocol.ImGroupChatMessage();
-            if (body2Case_ == Body2OneofCase.GroupChatMessage) {
-              subBuilder.MergeFrom(GroupChatMessage);
+            global::HWL_IM_Core.Protocol.ImGroupMessage subBuilder = new global::HWL_IM_Core.Protocol.ImGroupMessage();
+            if (body2Case_ == Body2OneofCase.GroupMessage) {
+              subBuilder.MergeFrom(GroupMessage);
             }
             input.ReadMessage(subBuilder);
-            GroupChatMessage = subBuilder;
+            GroupMessage = subBuilder;
             break;
           }
         }
@@ -890,11 +889,11 @@ namespace HWL_IM_Core.Protocol {
 
   }
 
-  public sealed partial class ImUserValidateMessage : pb::IMessage<ImUserValidateMessage> {
-    private static readonly pb::MessageParser<ImUserValidateMessage> _parser = new pb::MessageParser<ImUserValidateMessage>(() => new ImUserValidateMessage());
+  public sealed partial class ImValidateMessage : pb::IMessage<ImValidateMessage> {
+    private static readonly pb::MessageParser<ImValidateMessage> _parser = new pb::MessageParser<ImValidateMessage>(() => new ImValidateMessage());
     private pb::UnknownFieldSet _unknownFields;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public static pb::MessageParser<ImUserValidateMessage> Parser { get { return _parser; } }
+    public static pb::MessageParser<ImValidateMessage> Parser { get { return _parser; } }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public static pbr::MessageDescriptor Descriptor {
@@ -907,22 +906,22 @@ namespace HWL_IM_Core.Protocol {
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public ImUserValidateMessage() {
+    public ImValidateMessage() {
       OnConstruction();
     }
 
     partial void OnConstruction();
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public ImUserValidateMessage(ImUserValidateMessage other) : this() {
+    public ImValidateMessage(ImValidateMessage other) : this() {
       userId_ = other.userId_;
       token_ = other.token_;
       _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public ImUserValidateMessage Clone() {
-      return new ImUserValidateMessage(this);
+    public ImValidateMessage Clone() {
+      return new ImValidateMessage(this);
     }
 
     /// <summary>Field number for the "userId" field.</summary>
@@ -949,11 +948,11 @@ namespace HWL_IM_Core.Protocol {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public override bool Equals(object other) {
-      return Equals(other as ImUserValidateMessage);
+      return Equals(other as ImValidateMessage);
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public bool Equals(ImUserValidateMessage other) {
+    public bool Equals(ImValidateMessage other) {
       if (ReferenceEquals(other, null)) {
         return false;
       }
@@ -1012,7 +1011,7 @@ namespace HWL_IM_Core.Protocol {
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public void MergeFrom(ImUserValidateMessage other) {
+    public void MergeFrom(ImValidateMessage other) {
       if (other == null) {
         return;
       }
@@ -1047,11 +1046,11 @@ namespace HWL_IM_Core.Protocol {
 
   }
 
-  public sealed partial class ImUserChatMessage : pb::IMessage<ImUserChatMessage> {
-    private static readonly pb::MessageParser<ImUserChatMessage> _parser = new pb::MessageParser<ImUserChatMessage>(() => new ImUserChatMessage());
+  public sealed partial class ImUserMessage : pb::IMessage<ImUserMessage> {
+    private static readonly pb::MessageParser<ImUserMessage> _parser = new pb::MessageParser<ImUserMessage>(() => new ImUserMessage());
     private pb::UnknownFieldSet _unknownFields;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public static pb::MessageParser<ImUserChatMessage> Parser { get { return _parser; } }
+    public static pb::MessageParser<ImUserMessage> Parser { get { return _parser; } }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public static pbr::MessageDescriptor Descriptor {
@@ -1064,14 +1063,14 @@ namespace HWL_IM_Core.Protocol {
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public ImUserChatMessage() {
+    public ImUserMessage() {
       OnConstruction();
     }
 
     partial void OnConstruction();
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public ImUserChatMessage(ImUserChatMessage other) : this() {
+    public ImUserMessage(ImUserMessage other) : this() {
       fromUserId_ = other.fromUserId_;
       toUserId_ = other.toUserId_;
       contentType_ = other.contentType_;
@@ -1081,8 +1080,8 @@ namespace HWL_IM_Core.Protocol {
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public ImUserChatMessage Clone() {
-      return new ImUserChatMessage(this);
+    public ImUserMessage Clone() {
+      return new ImUserMessage(this);
     }
 
     /// <summary>Field number for the "fromUserId" field.</summary>
@@ -1142,11 +1141,11 @@ namespace HWL_IM_Core.Protocol {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public override bool Equals(object other) {
-      return Equals(other as ImUserChatMessage);
+      return Equals(other as ImUserMessage);
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public bool Equals(ImUserChatMessage other) {
+    public bool Equals(ImUserMessage other) {
       if (ReferenceEquals(other, null)) {
         return false;
       }
@@ -1232,7 +1231,7 @@ namespace HWL_IM_Core.Protocol {
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public void MergeFrom(ImUserChatMessage other) {
+    public void MergeFrom(ImUserMessage other) {
       if (other == null) {
         return;
       }
@@ -1288,11 +1287,11 @@ namespace HWL_IM_Core.Protocol {
 
   }
 
-  public sealed partial class ImGroupChatMessage : pb::IMessage<ImGroupChatMessage> {
-    private static readonly pb::MessageParser<ImGroupChatMessage> _parser = new pb::MessageParser<ImGroupChatMessage>(() => new ImGroupChatMessage());
+  public sealed partial class ImGroupMessage : pb::IMessage<ImGroupMessage> {
+    private static readonly pb::MessageParser<ImGroupMessage> _parser = new pb::MessageParser<ImGroupMessage>(() => new ImGroupMessage());
     private pb::UnknownFieldSet _unknownFields;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public static pb::MessageParser<ImGroupChatMessage> Parser { get { return _parser; } }
+    public static pb::MessageParser<ImGroupMessage> Parser { get { return _parser; } }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public static pbr::MessageDescriptor Descriptor {
@@ -1305,14 +1304,14 @@ namespace HWL_IM_Core.Protocol {
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public ImGroupChatMessage() {
+    public ImGroupMessage() {
       OnConstruction();
     }
 
     partial void OnConstruction();
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public ImGroupChatMessage(ImGroupChatMessage other) : this() {
+    public ImGroupMessage(ImGroupMessage other) : this() {
       fromUserId_ = other.fromUserId_;
       toGroup_ = other.toGroup_;
       contentType_ = other.contentType_;
@@ -1322,8 +1321,8 @@ namespace HWL_IM_Core.Protocol {
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public ImGroupChatMessage Clone() {
-      return new ImGroupChatMessage(this);
+    public ImGroupMessage Clone() {
+      return new ImGroupMessage(this);
     }
 
     /// <summary>Field number for the "fromUserId" field.</summary>
@@ -1383,11 +1382,11 @@ namespace HWL_IM_Core.Protocol {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public override bool Equals(object other) {
-      return Equals(other as ImGroupChatMessage);
+      return Equals(other as ImGroupMessage);
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public bool Equals(ImGroupChatMessage other) {
+    public bool Equals(ImGroupMessage other) {
       if (ReferenceEquals(other, null)) {
         return false;
       }
@@ -1473,7 +1472,7 @@ namespace HWL_IM_Core.Protocol {
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public void MergeFrom(ImGroupChatMessage other) {
+    public void MergeFrom(ImGroupMessage other) {
       if (other == null) {
         return;
       }

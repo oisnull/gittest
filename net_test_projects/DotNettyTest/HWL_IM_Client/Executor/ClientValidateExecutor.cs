@@ -39,7 +39,7 @@ namespace HWL_IM_Client.Executor
             return new ImMessageContext()
             {
                 Type = ImMessageType.Validate,
-                ValidateMessage = new ImUserValidateMessage()
+                ValidateMessage = new ImValidateMessage()
                 {
                     UserId = UserId,
                     Token = Token

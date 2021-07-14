@@ -18,8 +18,8 @@ namespace HWL_IM_Client
 
             IMClientEngine client = new IMClientEngine("127.0.0.1", 8050, clientListener: new IMClientLisenter());
             client.Register(new ClientPingExecutor());
-            client.Register(new ChatUserExecutor());
-            client.Register(new ChatGroupExecutor());
+            client.Register(new UserExecutor());
+            client.Register(new GroupExecutor());
             client.GlobalMessageHead = new ImMessageHead()
             {
                 Client = "windows",
@@ -68,12 +68,12 @@ namespace HWL_IM_Client
                     else if (key.StartsWith("user"))
                     {
                         string[] parameters = key.Split(' ');
-                        UserChat(client, currentUserId, ulong.Parse(parameters[1]), parameters[2]);
+                        User(client, currentUserId, ulong.Parse(parameters[1]), parameters[2]);
                     }
                     else if (key.StartsWith("group"))
                     {
                         string[] parameters = key.Split(' ');
-                        GroupChat(client, currentUserId, parameters[1], parameters[2]);
+                        Group(client, currentUserId, parameters[1], parameters[2]);
                     }
                     else
                     {
@@ -99,30 +99,30 @@ namespace HWL_IM_Client
             client.Send(clientValidate);
         }
 
-        static void UserChat(IMClientEngine client, ulong fromUser, ulong toUser, string textMessage)
+        static void User(IMClientEngine client, ulong fromUser, ulong toUser, string textMessage)
         {
-            ChatUserExecutor chatUser = new ChatUserExecutor();
-            chatUser.ChatMessage = new ImUserChatMessage()
+            UserExecutor userExecutor = new UserExecutor();
+            userExecutor.UserMessage = new ImUserMessage()
             {
                 FromUserId = fromUser,
                 ToUserId = toUser,
                 ContentType = "text",
                 ContentBody = textMessage,
             };
-            client.Send(chatUser);
+            client.Send(userExecutor);
         }
 
-        static void GroupChat(IMClientEngine client, ulong fromUser, string toGroup, string textMessage)
+        static void Group(IMClientEngine client, ulong fromUser, string toGroup, string textMessage)
         {
-            ChatGroupExecutor chatGroup = new ChatGroupExecutor();
-            chatGroup.ChatMessage = new ImGroupChatMessage()
+            GroupExecutor groupExecutor = new GroupExecutor();
+            groupExecutor.GroupMessage = new ImGroupMessage()
             {
                 FromUserId = fromUser,
                 ToGroup = toGroup,
                 ContentType = "text",
                 ContentBody = textMessage,
             };
-            client.Send(chatGroup);
+            client.Send(groupExecutor);
         }
 
         static void Print()

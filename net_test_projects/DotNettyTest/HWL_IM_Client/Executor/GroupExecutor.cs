@@ -9,22 +9,21 @@ using System.Threading.Tasks;
 
 namespace HWL_IM_Client.Executor
 {
-    public class ChatUserExecutor : IClientMessageExecutor
+    public class GroupExecutor : IClientMessageExecutor
     {
-        public ImUserChatMessage ChatMessage { get; set; }
+        public ImGroupMessage GroupMessage { get; set; }
 
         public void Receive(ImMessageContext message)
         {
-            //ImUserValidateMessage validateMessage = message.ValidateMessage;
-            ClientConfig.WriteLine("ChatUserExecutor: " + JsonConvert.SerializeObject(message));
+            Console.WriteLine("GroupExecutor: " + JsonConvert.SerializeObject(message));
         }
 
         public ImMessageContext BuildContext()
         {
             return new ImMessageContext()
             {
-                Type = ImMessageType.User,
-                UserChatMessage = this.ChatMessage,
+                Type = ImMessageType.Group,
+                GroupMessage = this.GroupMessage,
             };
         }
     }

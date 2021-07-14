@@ -38,8 +38,8 @@ namespace HWL_IM_Core
 
             this.Receivers = new Dictionary<ImMessageType, IServerMessageExecutor>();
             this.Receivers.Add(ImMessageType.Validate, new ValidateExecutor());
-            this.Receivers.Add(ImMessageType.User, new UserChatExecutor());
-            this.Receivers.Add(ImMessageType.Group, new GroupChatExecutor());
+            this.Receivers.Add(ImMessageType.User, new UserExecutor());
+            this.Receivers.Add(ImMessageType.Group, new GroupExecutor());
             this.Receivers.Add(ImMessageType.Ping, new BaseServerMessageExecutor());
 
             Init();

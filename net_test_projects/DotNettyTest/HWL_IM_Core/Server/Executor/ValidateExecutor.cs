@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace HWL_IM_Core.Server.Executor
 {
-    public class ValidateExecutor : AbstractServerMessageExecutor<ImUserValidateMessage>
+    public class ValidateExecutor : AbstractServerMessageExecutor<ImValidateMessage>
     {
         protected override bool IsCheckSession => false;
 
@@ -26,7 +26,7 @@ namespace HWL_IM_Core.Server.Executor
             }
         }
 
-        public override void Execute(ImUserValidateMessage message)
+        public override void Execute(ImValidateMessage message)
         {
             if (!base.UserAction.ValidateUser(message.UserId, message.Token))
             {
@@ -87,7 +87,7 @@ namespace HWL_IM_Core.Server.Executor
             }
         }
 
-        public override ImUserValidateMessage GetMessageContent(ImMessageContext messageContext)
+        public override ImValidateMessage GetMessageContent(ImMessageContext messageContext)
         {
             return messageContext.ValidateMessage;
         }

@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace HWL_IM_Core.Server.Executor
 {
-    public class GroupChatExecutor : AbstractServerMessageExecutor<ImGroupChatMessage>
+    public class UserExecutor : AbstractServerMessageExecutor<ImUserMessage>
     {
         protected override bool IsCheckSession => true;
 
@@ -18,9 +18,9 @@ namespace HWL_IM_Core.Server.Executor
             {
                 throw new ArgumentNullException("FromUserId");
             }
-            if (string.IsNullOrEmpty(MessageContent.ToGroup))
+            if (MessageContent.ToUserId <= 0)
             {
-                throw new ArgumentNullException("ToGroup");
+                throw new ArgumentNullException("ToUserId");
             }
             if (string.IsNullOrEmpty(MessageContent.ContentBody))
             {
@@ -28,7 +28,7 @@ namespace HWL_IM_Core.Server.Executor
             }
         }
 
-        public override void Execute(ImGroupChatMessage message)
+        public override void Execute(ImUserMessage message)
         {
             ImMessageContext responseContext = new ImMessageContext()
             {
@@ -38,22 +38,15 @@ namespace HWL_IM_Core.Server.Executor
                     Status = ImStatus.Success,
                     Source = ImMessageSource.Instant,
                 },
-                GroupChatMessage = message
+                UserMessage = message
             };
 
-            List<ulong> userIds = UserAction.GetUserIds(message.ToGroup);
-            foreach (var uid in userIds)
-            {
-                if (uid != message.FromUserId)
-                {
-                    base.Push(uid, responseContext);
-                }
-            }
+            base.Push(message.ToUserId, responseContext);
         }
 
-        public override ImGroupChatMessage GetMessageContent(ImMessageContext messageContext)
+        public override ImUserMessage GetMessageContent(ImMessageContext messageContext)
         {
-            return messageContext.GroupChatMessage;
+            return messageContext.UserMessage;
         }
     }
 }

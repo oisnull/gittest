@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace HWL_IM_Core.Server.Executor
 {
-    public class UserChatExecutor : AbstractServerMessageExecutor<ImUserChatMessage>
+    public class GroupExecutor : AbstractServerMessageExecutor<ImGroupMessage>
     {
         protected override bool IsCheckSession => true;
 
@@ -18,9 +18,9 @@ namespace HWL_IM_Core.Server.Executor
             {
                 throw new ArgumentNullException("FromUserId");
             }
-            if (MessageContent.ToUserId <= 0)
+            if (string.IsNullOrEmpty(MessageContent.ToGroup))
             {
-                throw new ArgumentNullException("ToUserId");
+                throw new ArgumentNullException("ToGroup");
             }
             if (string.IsNullOrEmpty(MessageContent.ContentBody))
             {
@@ -28,7 +28,7 @@ namespace HWL_IM_Core.Server.Executor
             }
         }
 
-        public override void Execute(ImUserChatMessage message)
+        public override void Execute(ImGroupMessage message)
         {
             ImMessageContext responseContext = new ImMessageContext()
             {
@@ -38,15 +38,22 @@ namespace HWL_IM_Core.Server.Executor
                     Status = ImStatus.Success,
                     Source = ImMessageSource.Instant,
                 },
-                UserChatMessage = message
+                GroupMessage = message
             };
 
-            base.Push(message.ToUserId, responseContext);
+            List<ulong> userIds = UserAction.GetUserIds(message.ToGroup);
+            foreach (var uid in userIds)
+            {
+                if (uid != message.FromUserId)
+                {
+                    base.Push(uid, responseContext);
+                }
+            }
         }
 
-        public override ImUserChatMessage GetMessageContent(ImMessageContext messageContext)
+        public override ImGroupMessage GetMessageContent(ImMessageContext messageContext)
         {
-            return messageContext.UserChatMessage;
+            return messageContext.GroupMessage;
         }
     }
 }

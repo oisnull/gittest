@@ -47,9 +47,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ClientConfig.cs" />
-    <Compile Include="Executor\ChatGroupExecutor.cs" />
+    <Compile Include="Executor\GroupExecutor.cs" />
     <Compile Include="Executor\ClientPingExecutor.cs" />
-    <Compile Include="Executor\ChatUserExecutor.cs" />
+    <Compile Include="Executor\UserExecutor.cs" />
     <Compile Include="Executor\ClientValidateExecutor.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
