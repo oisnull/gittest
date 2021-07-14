@@ -14,14 +14,11 @@ namespace HWL_IM_Client.Executor
         public ulong UserId { get; set; }
         public string Token { get; set; }
 
-        //Action<bool, ImMessageResponse> callReceive;
         Action<ImMessageResponse> successCallback;
         public ClientValidateExecutor(Action<ImMessageResponse> callback)
         {
             successCallback = callback;
         }
-
-        public ImMessageType MessageType => ImMessageType.Validate;
 
         public void Receive(ImMessageContext message)
         {
@@ -33,11 +30,11 @@ namespace HWL_IM_Client.Executor
             else
             {
                 //callReceive?.Invoke(false, message.Response);
-                ClientConfig.WriteLine($"ClientValidateExecutor: {message.Response.Output}", ConsoleColor.Red);
+                ClientConfig.WriteLine($"ClientValidateExecutor: im client login {message.Response.Status.ToString()}, {message.Response.Output}", ConsoleColor.Red);
             }
         }
 
-        public ImMessageContext SendContent()
+        public ImMessageContext BuildContext()
         {
             return new ImMessageContext()
             {

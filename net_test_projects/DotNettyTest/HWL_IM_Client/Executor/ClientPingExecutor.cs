@@ -11,14 +11,12 @@ namespace HWL_IM_Client.Executor
 {
     public class ClientPingExecutor : IClientMessageExecutor
     {
-        public ImMessageType MessageType => ImMessageType.Ping;
-
         public void Receive(ImMessageContext message)
         {
             ClientConfig.WriteLine("ClientPingExecutor: " + JsonConvert.SerializeObject(message));
         }
 
-        public ImMessageContext SendContent()
+        public ImMessageContext BuildContext()
         {
             return new ImMessageContext()
             {

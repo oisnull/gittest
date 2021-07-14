@@ -9,8 +9,7 @@ namespace HWL_IM_Core.Client
 {
     public interface IClientMessageExecutor
     {
-        ImMessageType MessageType { get; }
-        ImMessageContext SendContent();
+        ImMessageContext BuildContext();
         void Receive(ImMessageContext message);
     }
 }

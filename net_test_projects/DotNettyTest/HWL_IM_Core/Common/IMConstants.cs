@@ -10,17 +10,13 @@ namespace HWL_IM_Core.Common
 {
     public static class IMConstants
     {
-        //public static readonly AttributeKey<int> PING_COUNT = AttributeKey<int>.ValueOf("ping_count");
-        public static readonly AttributeKey<string> ATTR_USER_ID = AttributeKey<string>.ValueOf("user-id");
-        public static readonly AttributeKey<string> ATTR_SESSION_ID = AttributeKey<string>.ValueOf("user-session-id");
-        //public static readonly AttributeKey<string> CHANNEL = AttributeKey<string>.ValueOf("channel");
-        //public static readonly AttributeKey<string> ID = AttributeKey<string>.ValueOf("id");
+        //public static readonly AttributeKey<string> ATTR_USER_ID = AttributeKey<string>.ValueOf("user-id");
+        //public static readonly AttributeKey<string> ATTR_SESSION_ID = AttributeKey<string>.ValueOf("user-session-id");
         //public static readonly AttributeKey<string> DEVICE_ID = AttributeKey<string>.ValueOf("device_id");
-        //public static readonly AttributeKey<string> TAG = AttributeKey<string>.ValueOf("tag");
-        //public static readonly AttributeKey<string> LANGUAGE = AttributeKey<string>.ValueOf("language");
 
         public const int READERIDLE_TIMEOUT_SECONDS = 2 * 60;
         public const int WRITERIDLE_TIMEOUT_SECONDS = 30;
+
 
         //public static ulong GetChannelUserId(IChannel channel)
         //{

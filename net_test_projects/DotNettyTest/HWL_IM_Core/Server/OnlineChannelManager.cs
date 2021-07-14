@@ -12,6 +12,9 @@ namespace HWL_IM_Core.Server
 {
     public class OnlineChannelManager
     {
+        /// <summary>
+        /// session,channel
+        /// </summary>
         private Dictionary<string, IChannel> onlineChannels;
         private IServerSessionAction sessionManager = null;
 
@@ -30,39 +33,16 @@ namespace HWL_IM_Core.Server
             sessionManager = sessionAction == null ? new ServerSessionManager() : sessionAction;
         }
 
-        public IChannel GetChannel(string sessionid)
-        {
-            if (string.IsNullOrEmpty(sessionid) || !onlineChannels.ContainsKey(sessionid)) return null;
-            return onlineChannels[sessionid];
-        }
-
-        public void AddChannel(IChannel channel)
-        {
-            string key = channel.GetAttribute(IMConstants.ATTR_SESSION_ID).Get();
-            if (!string.IsNullOrEmpty(key))
-                onlineChannels.Add(key, channel);
-        }
-
         public void RemoveChannel(IChannel channel)
         {
-            string key = channel.GetAttribute(IMConstants.ATTR_SESSION_ID).Get();
-            if (!string.IsNullOrEmpty(key))
+            IMChannelUser user = IMChannelUser.Get(channel);
+            if (user != null)
             {
-                sessionManager.RemoveSession(key);
-                onlineChannels.Remove(key);
+                sessionManager.RemoveSession(user.SessionId);
+                onlineChannels.Remove(user.SessionId);
             }
-        }
 
-        public string GetSession(ulong userid)
-        {
-            if (userid <= 0) return null;
-            return sessionManager.GetSession(userid);
-        }
-
-        public ulong GetUserId(IChannel channel)
-        {
-            string key = channel.GetAttribute(IMConstants.ATTR_SESSION_ID).Get();
-            return sessionManager.GetUserId(key);
+            LogHelper.Info($"Online channel total: {onlineChannels.Count}");
         }
 
         public bool IsOnline(ulong userid)
@@ -71,21 +51,6 @@ namespace HWL_IM_Core.Server
                 return false;
 
             return sessionManager.GetSession(userid) != null;
-        }
-
-        public bool IsOnline(string sessionid)
-        {
-            if (string.IsNullOrEmpty(sessionid)) return false;
-            return onlineChannels.ContainsKey(sessionid);
-        }
-
-        public bool isOnline(IChannel channel)
-        {
-            ulong userId = GetUserId(channel);
-            if (userId <= 0) return false;
-
-            IChannel c = GetChannel(userId);
-            return c != null && c.Active;
         }
 
         public IChannel GetChannel(ulong userid)
@@ -109,11 +74,10 @@ namespace HWL_IM_Core.Server
                 return;
             }
 
-            channel.GetAttribute(IMConstants.ATTR_USER_ID).Set(userid.ToString());
-            channel.GetAttribute(IMConstants.ATTR_SESSION_ID).Set(sessionid);
             onlineChannels.Add(sessionid, channel);
             sessionManager.SetSession(userid, sessionid);
 
+            IMChannelUser.Set(channel, userid, sessionid);
             LogHelper.Info($"Online channel total: {onlineChannels.Count}");
         }
     }

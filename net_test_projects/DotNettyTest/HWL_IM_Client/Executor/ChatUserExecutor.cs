@@ -11,7 +11,6 @@ namespace HWL_IM_Client.Executor
 {
     public class ChatUserExecutor : IClientMessageExecutor
     {
-        public ImMessageType MessageType => ImMessageType.User;
         public ImUserChatMessage ChatMessage { get; set; }
 
         public void Receive(ImMessageContext message)
@@ -20,7 +19,7 @@ namespace HWL_IM_Client.Executor
             ClientConfig.WriteLine("ChatUserExecutor: " + JsonConvert.SerializeObject(message));
         }
 
-        public ImMessageContext SendContent()
+        public ImMessageContext BuildContext()
         {
             return new ImMessageContext()
             {

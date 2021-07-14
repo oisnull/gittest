@@ -225,6 +225,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Client\ClientChannelHandler.cs" />
+    <Compile Include="Common\IMServerPushStatus.cs" />
+    <Compile Include="Common\IMChannelUser.cs" />
     <Compile Include="IClientListener.cs" />
     <Compile Include="Client\IClientMessageExecutor.cs" />
     <Compile Include="IMClientEngine.cs" />
@@ -236,10 +238,16 @@
     <Compile Include="LogHelper.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Protocol\ImMessage.cs" />
+    <Compile Include="Server\Executor\AbstractServerMessageExecutor.cs" />
     <Compile Include="Server\DefaultOfflineMessageManager.cs" />
     <Compile Include="Server\DefaultServerUserAction.cs" />
     <Compile Include="IMServerEngine.cs" />
     <Compile Include="IMServerEngineOption.cs" />
+    <Compile Include="Server\Executor\BaseServerMessageExecutor.cs" />
+    <Compile Include="Server\Executor\GroupChatExecutor.cs" />
+    <Compile Include="Server\Executor\UserChatExecutor.cs" />
+    <Compile Include="Server\Executor\ValidateExecutor.cs" />
+    <Compile Include="Server\IServerMessageExecutor.cs" />
     <Compile Include="Server\OnlineChannelManager.cs" />
     <Compile Include="Server\ServerChannelHandler.cs" />
     <Compile Include="Server\ServerMessageManager.cs" />

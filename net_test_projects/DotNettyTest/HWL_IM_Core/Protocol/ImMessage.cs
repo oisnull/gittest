@@ -44,13 +44,13 @@ namespace HWL_IM_Core.Protocol {
             "C2NvbnRlbnRCb2R5GCggASgJEhEKCWJ1aWxkVGltZRgyIAEoBCJ2ChJJbUdy",
             "b3VwQ2hhdE1lc3NhZ2USEgoKZnJvbVVzZXJJZBgKIAEoBBIPCgd0b0dyb3Vw",
             "GBQgASgJEhMKC2NvbnRlbnRUeXBlGB4gASgJEhMKC2NvbnRlbnRCb2R5GCgg",
-            "ASgJEhEKCWJ1aWxkVGltZRgyIAEoBCpgCg1JbU1lc3NhZ2VUeXBlEgkKBUJh",
-            "c2ljEAASDAoIVmFsaWRhdGUQARIICgRVc2VyEAISCQoFR3JvdXAQAxIICgRQ",
-            "aW5nEAQSCAoEUG9uZxA8Eg0KCUNsaWVudEFjaxBGKjgKCEltU3RhdHVzEgsK",
-            "B1N1Y2Nlc3MQABILCgdGYWlsdXJlEAESEgoOU2Vzc2lvbkludmFsaWQQAipC",
-            "Cg9JbU1lc3NhZ2VTb3VyY2USCwoHSW5zdGFudBAAEgsKB09mZmxpbmUQARIJ",
-            "CgVSZXRyeRACEgoKBlVua25vdxADQjEKFmNvbS5od2wuaW1jb3JlLmltcHJv",
-            "dG9QAaoCFEhXTF9JTV9Db3JlLlByb3RvY29sYgZwcm90bzM="));
+            "ASgJEhEKCWJ1aWxkVGltZRgyIAEoBCo8Cg1JbU1lc3NhZ2VUeXBlEgwKCFZh",
+            "bGlkYXRlEAASCAoEVXNlchABEgkKBUdyb3VwEAISCAoEUGluZxADKkoKCElt",
+            "U3RhdHVzEgsKB1N1Y2Nlc3MQABILCgdGYWlsdXJlEAESEgoOU2Vzc2lvbklu",
+            "dmFsaWQQAhIQCgxGb3JjZU9mZmxpbmUQAypCCg9JbU1lc3NhZ2VTb3VyY2US",
+            "CwoHSW5zdGFudBAAEgsKB09mZmxpbmUQARIJCgVSZXRyeRACEgoKBlVua25v",
+            "dxADQjEKFmNvbS5od2wuaW1jb3JlLmltcHJvdG9QAaoCFEhXTF9JTV9Db3Jl",
+            "LlByb3RvY29sYgZwcm90bzM="));
       descriptor = pbr::FileDescriptor.FromGeneratedCode(descriptorData,
           new pbr::FileDescriptor[] { },
           new pbr::GeneratedClrTypeInfo(new[] {typeof(global::HWL_IM_Core.Protocol.ImMessageType), typeof(global::HWL_IM_Core.Protocol.ImStatus), typeof(global::HWL_IM_Core.Protocol.ImMessageSource), }, new pbr::GeneratedClrTypeInfo[] {
@@ -67,19 +67,17 @@ namespace HWL_IM_Core.Protocol {
   }
   #region Enums
   public enum ImMessageType {
-    [pbr::OriginalName("Basic")] Basic = 0,
-    [pbr::OriginalName("Validate")] Validate = 1,
-    [pbr::OriginalName("User")] User = 2,
-    [pbr::OriginalName("Group")] Group = 3,
-    [pbr::OriginalName("Ping")] Ping = 4,
-    [pbr::OriginalName("Pong")] Pong = 60,
-    [pbr::OriginalName("ClientAck")] ClientAck = 70,
+    [pbr::OriginalName("Validate")] Validate = 0,
+    [pbr::OriginalName("User")] User = 1,
+    [pbr::OriginalName("Group")] Group = 2,
+    [pbr::OriginalName("Ping")] Ping = 3,
   }
 
   public enum ImStatus {
     [pbr::OriginalName("Success")] Success = 0,
     [pbr::OriginalName("Failure")] Failure = 1,
     [pbr::OriginalName("SessionInvalid")] SessionInvalid = 2,
+    [pbr::OriginalName("ForceOffline")] ForceOffline = 3,
   }
 
   public enum ImMessageSource {

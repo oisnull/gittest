@@ -60,11 +60,12 @@ namespace HWL_IM_Core
         {
             if (executor == null) return;
 
-            if (this.messageExecutors.ContainsKey(executor.MessageType))
+            ImMessageType type = executor.BuildContext().Type;
+            if (this.messageExecutors.ContainsKey(type))
             {
-                this.messageExecutors.Remove(executor.MessageType);
+                this.messageExecutors.Remove(type);
             }
-            this.messageExecutors.Add(executor.MessageType, executor);
+            this.messageExecutors.Add(type, executor);
         }
 
         public IClientMessageExecutor GetExecutor(ImMessageType type)
@@ -93,7 +94,7 @@ namespace HWL_IM_Core
                 this.Register(executor);
             }
 
-            ImMessageContext context = executor.SendContent();
+            ImMessageContext context = executor.BuildContext();
             if (context == null)
             {
                 throw new Exception("The content sent through the im client cannot be empty.");

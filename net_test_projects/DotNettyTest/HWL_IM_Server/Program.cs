@@ -17,7 +17,8 @@ namespace HWL_IM_Server
             IMServerEngine server = new IMServerEngine("127.0.0.1", 8050, option =>
             {
                 option.SessionAction = new ServerSessionManager();
-                option.UserAction = new DefaultServerUserAction();
+                //option.UserAction = new DefaultServerUserAction();
+                option.UserAction = new RdsUserAction();
                 option.OfflineMessageAction = new DefaultOfflineMessageManager();
             });
 

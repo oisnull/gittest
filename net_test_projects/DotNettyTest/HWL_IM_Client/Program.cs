@@ -18,6 +18,8 @@ namespace HWL_IM_Client
 
             IMClientEngine client = new IMClientEngine("127.0.0.1", 8050, clientListener: new IMClientLisenter());
             client.Register(new ClientPingExecutor());
+            client.Register(new ChatUserExecutor());
+            client.Register(new ChatGroupExecutor());
             client.GlobalMessageHead = new ImMessageHead()
             {
                 Client = "windows",
@@ -28,7 +30,7 @@ namespace HWL_IM_Client
             };
             Console.WriteLine($"Connecting to server({client.Host}:{client.Port}) ...");
             client.Connect();
-            Console.WriteLine($"Current client endpoint: {client.LocalAddress}");
+            ClientConfig.WriteLine($"Current client endpoint: {client.LocalAddress}", ConsoleColor.Green);
 
             Exec(client);
         }
@@ -56,6 +58,7 @@ namespace HWL_IM_Client
                     else if (key.StartsWith("connect"))
                     {
                         client.Connect();
+                        ClientConfig.WriteLine($"Current client endpoint: {client.LocalAddress}", ConsoleColor.Green);
                     }
                     else if (key.StartsWith("logout"))
                     {

@@ -11,7 +11,6 @@ namespace HWL_IM_Client.Executor
 {
     public class ChatGroupExecutor : IClientMessageExecutor
     {
-        public ImMessageType MessageType => ImMessageType.Group;
         public ImGroupChatMessage ChatMessage { get; set; }
 
         public void Receive(ImMessageContext message)
@@ -20,11 +19,11 @@ namespace HWL_IM_Client.Executor
             Console.WriteLine("ChatGroupExecutor: " + JsonConvert.SerializeObject(message));
         }
 
-        public ImMessageContext SendContent()
+        public ImMessageContext BuildContext()
         {
             return new ImMessageContext()
             {
-                Type = ImMessageType.Validate,
+                Type = ImMessageType.Group,
                 GroupChatMessage = this.ChatMessage,
             };
         }

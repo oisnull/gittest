@@ -4,9 +4,9 @@ using DotNetty.Transport.Bootstrapping;
 using DotNetty.Transport.Channels;
 using DotNetty.Transport.Channels.Sockets;
 using HWL_IM_Core.Common;
-using HWL_IM_Core.Extra;
 using HWL_IM_Core.Protocol;
 using HWL_IM_Core.Server;
+using HWL_IM_Core.Server.Executor;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -21,12 +21,12 @@ namespace HWL_IM_Core
         public string Host { get; private set; }
         public int Port { get; private set; }
         public IMServerEngineOption ServerEngineOption { get; private set; }
+        public Dictionary<ImMessageType, IServerMessageExecutor> Receivers { get; private set; }
 
         private IEventLoopGroup receiveGroup;
         private IEventLoopGroup workGroup;
         private ServerBootstrap bootstrap;
         private IChannel currentChannel;
-        //private ServerChannelHandleContext handleContext;
 
         public IMServerEngine(string host, int port, Action<IMServerEngineOption> optionAction = null)
         {
@@ -34,7 +34,13 @@ namespace HWL_IM_Core
             this.Port = port;
             this.ServerEngineOption = new IMServerEngineOption();
             optionAction?.Invoke(this.ServerEngineOption);
-            //this.handleContext = new ServerChannelHandleContext(this.ServerEngineOption);
+
+
+            this.Receivers = new Dictionary<ImMessageType, IServerMessageExecutor>();
+            this.Receivers.Add(ImMessageType.Validate, new ValidateExecutor());
+            this.Receivers.Add(ImMessageType.User, new UserChatExecutor());
+            this.Receivers.Add(ImMessageType.Group, new GroupChatExecutor());
+            this.Receivers.Add(ImMessageType.Ping, new BaseServerMessageExecutor());
 
             Init();
         }
@@ -56,8 +62,7 @@ namespace HWL_IM_Core
                 pipeline.AddLast(new ProtobufEncoder());
                 pipeline.AddLast(new IdleStateHandler(IMConstants.READERIDLE_TIMEOUT_SECONDS, IMConstants.WRITERIDLE_TIMEOUT_SECONDS, 0));
 
-                //pipeline.AddLast(new ServerChannelHandler(this.handleContext));
-                pipeline.AddLast(new ServerChannelHandler(this.ServerEngineOption));
+                pipeline.AddLast(new ServerChannelHandler(this.ServerEngineOption,this.Receivers));
             }));
         }
 

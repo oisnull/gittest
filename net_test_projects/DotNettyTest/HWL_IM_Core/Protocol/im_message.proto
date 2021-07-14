@@ -9,19 +9,17 @@ option java_multiple_files = true;
 option java_package = "com.hwl.imcore.improto";
 
 enum ImMessageType {
-	Basic = 0;
-    Validate = 1;
-    User = 2;
-    Group = 3;
-    Ping = 4;
-    Pong = 60;
-    ClientAck = 70;
+    Validate = 0;
+    User = 1;
+    Group = 2;
+    Ping = 3;
 }
 
 enum ImStatus {
     Success = 0;
     Failure = 1;
     SessionInvalid = 2;
+	ForceOffline = 3;
 }
 
 enum ImMessageSource {
