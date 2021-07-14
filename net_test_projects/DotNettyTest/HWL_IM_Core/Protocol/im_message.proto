@@ -1,0 +1,78 @@
+syntax = "proto3";
+package imbasicproto;
+//protoc --java_out=src/main/java src/main/java/com/hwl/imcore/protocol/im_message.proto
+//protoc --csharp_out=Protocol im_message.proto
+//protoc --csharp_out=. im_message.proto
+option csharp_namespace = "HWL_IM_Core.Protocol";
+
+option java_multiple_files = true;
+option java_package = "com.hwl.imcore.improto";
+
+enum ImMessageType {
+    Validate = 0;
+    User = 1;
+    Group = 2;
+    Ping = 3;
+}
+
+enum ImStatus {
+    Success = 0;
+    Failure = 1;
+    SessionInvalid = 2;
+	ForceOffline = 3;
+}
+
+enum ImMessageSource {
+    Instant = 0;
+    Offline = 1;
+    Retry = 2;
+	Unknow = 3;
+}
+
+message ImMessageContext{
+    ImMessageType type = 10;
+	oneof body1 {
+		ImMessageHead head = 20;
+		ImMessageResponse response = 30;
+    }
+	oneof body2 {
+		ImUserValidateMessage validateMessage = 40;
+        ImUserChatMessage userChatMessage = 50;
+        ImGroupChatMessage groupChatMessage = 60;
+    }
+}
+
+message ImMessageHead {
+    uint64 timestamp = 10;
+    string client = 20;
+    string session = 30;
+    string language = 40;
+    string version = 50;
+}
+
+message ImMessageResponse {
+    ImStatus status = 10;
+    string output = 20;
+    ImMessageSource source = 30;
+}
+
+message ImUserValidateMessage {
+    uint64 userId = 30;
+    string token = 40;
+}
+
+message ImUserChatMessage {
+    uint64 fromUserId = 10;
+    uint64 toUserId = 20;
+	string contentType = 30;
+    string contentBody = 40;
+    uint64 buildTime = 50;
+}
+
+message ImGroupChatMessage {
+    uint64 fromUserId = 10;
+    string toGroup = 20;
+	string contentType = 30;
+    string contentBody = 40;
+    uint64 buildTime = 50;
+}
