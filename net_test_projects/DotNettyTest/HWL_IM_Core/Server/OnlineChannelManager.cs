@@ -38,7 +38,7 @@ namespace HWL_IM_Core.Server
             IMChannelUser user = IMChannelUser.Get(channel);
             if (user != null)
             {
-                sessionManager.RemoveSession(user.SessionId);
+                sessionManager.RemoveSession(user.UserId);
                 onlineChannels.Remove(user.SessionId);
             }
 

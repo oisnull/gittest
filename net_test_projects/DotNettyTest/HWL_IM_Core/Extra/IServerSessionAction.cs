@@ -10,11 +10,11 @@ namespace HWL_IM_Core.Extra
     {
         string GetSession(ulong userid);
 
-        ulong GetUserId(string sessionid);
+        //ulong GetUserId(string sessionid);
 
         void SetSession(ulong userid, string sessionid);
 
-        void RemoveSession(string sessionid);
+        //void RemoveSession(string sessionid);
 
         void RemoveSession(ulong userid);
     }

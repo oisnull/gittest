@@ -25,22 +25,22 @@ namespace HWL_IM_Core.Server
             return onlineSessions[userid];
         }
 
-        public ulong GetUserId(string sessionid)
-        {
-            if (string.IsNullOrEmpty(sessionid))
-            {
-                return 0;
-            }
-            return onlineSessions.FirstOrDefault(x => x.Value == sessionid).Key;
-        }
+        //public ulong GetUserId(string sessionid)
+        //{
+        //    if (string.IsNullOrEmpty(sessionid))
+        //    {
+        //        return 0;
+        //    }
+        //    return onlineSessions.FirstOrDefault(x => x.Value == sessionid).Key;
+        //}
 
-        public void RemoveSession(string sessionid)
-        {
-            if (string.IsNullOrEmpty(sessionid)) return;
+        //public void RemoveSession(string sessionid)
+        //{
+        //    if (string.IsNullOrEmpty(sessionid)) return;
 
-            ulong userid = GetUserId(sessionid);
-            RemoveSession(userid);
-        }
+        //    ulong userid = GetUserId(sessionid);
+        //    RemoveSession(userid);
+        //}
 
         public void RemoveSession(ulong userid)
         {

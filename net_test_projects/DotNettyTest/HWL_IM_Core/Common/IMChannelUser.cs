@@ -29,7 +29,8 @@ namespace HWL_IM_Core.Common
 
         public static void Set(IChannel channel, ulong userId, string sessionId)
         {
-            channel.GetAttribute(ATTR_IM_CLIENT).Set(new IMChannelUser(userId, sessionId));
+            IMChannelUser userAttr = new IMChannelUser(userId, sessionId);
+            channel.GetAttribute(ATTR_IM_CLIENT).Set(userAttr);
         }
 
         public static IMChannelUser Get(IChannel channel)

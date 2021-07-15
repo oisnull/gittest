@@ -250,7 +250,6 @@
     <Compile Include="Server\IServerMessageExecutor.cs" />
     <Compile Include="Server\OnlineChannelManager.cs" />
     <Compile Include="Server\ServerChannelHandler.cs" />
-    <Compile Include="Server\ServerMessageManager.cs" />
     <Compile Include="Server\ServerSessionManager.cs" />
     <Compile Include="Server\SessionInvalidException.cs" />
   </ItemGroup>
