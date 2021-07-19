@@ -81,5 +81,17 @@ namespace HWL_IM_Core.Server
                 return null;
             }
         }
+
+        public int GetCount(ulong userid)
+        {
+            if (offlineMessages.ContainsKey(userid))
+            {
+                return offlineMessages[userid].Count;
+            }
+            else
+            {
+                return 0;
+            }
+        }
     }
 }

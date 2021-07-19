@@ -38,5 +38,11 @@ namespace HWL_IM_Core.Common
             IMChannelUser attr = channel.GetAttribute(ATTR_IM_CLIENT).Get();
             return attr;
         }
+
+        public static void Remove(IChannel channel)
+        {
+            if (channel.HasAttribute(ATTR_IM_CLIENT))
+                channel.GetAttribute(ATTR_IM_CLIENT).Remove();
+        }
     }
 }

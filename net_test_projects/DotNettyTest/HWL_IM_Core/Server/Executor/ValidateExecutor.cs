@@ -31,32 +31,39 @@ namespace HWL_IM_Core.Server.Executor
             if (!base.UserAction.ValidateUser(message.UserId, message.Token))
             {
                 Push(base.CurrentChannel, CreateResponseContext(ImStatus.Failure, "User token is invalid."));
+                base.ChannelManager.CloseChannel(base.CurrentChannel);
                 return;
             }
 
             IMChannelUser client = IMChannelUser.Get(base.CurrentChannel);
             bool isOnline = ChannelManager.IsOnline(message.UserId);
-            if (isOnline)
+            if (!isOnline && client == null)//case 1: never login from any device
             {
-                if (client == null)
+                this.GenerateNewSession();
+                return;
+            }
+
+            if (!isOnline && client != null)//case 2: the same device, different account login
+            {
+                Push(base.CurrentChannel, CreateResponseContext(ImStatus.Failure, $"User {client.UserId} is online, Please logout first."));
+                return;
+            }
+
+            if (isOnline && client == null)//case 3: different device, the same account re-login
+            {
+                this.ForceOffline();
+                this.GenerateNewSession();
+                return;
+            }
+
+            if (isOnline && client != null)
+            {
+                if (client.UserId == message.UserId)//case 4: the same device, the same account re-login
                 {
-                    this.ForceOffline();
-                    this.GenerateNewSession();
-                }
-                else
-                {
-                    //already session online
                     Push(base.CurrentChannel, CreateResponseContext(ImStatus.Success, client.SessionId));
                     PushOffline(message.UserId, base.CurrentChannel);
                 }
-            }
-            else
-            {
-                if (client == null)
-                {
-                    this.GenerateNewSession();
-                }
-                else if (client.UserId != message.UserId)
+                else//case 5: the same device, the diff account re-login
                 {
                     Push(base.CurrentChannel, CreateResponseContext(ImStatus.Failure, $"User {client.UserId} is online, Please logout first."));
                 }
@@ -82,8 +89,7 @@ namespace HWL_IM_Core.Server.Executor
 
                 LogHelper.Debug($"Remote client {onlineChannel.RemoteAddress.ToString()} force offline, session: {client.SessionId}");
 
-                base.ChannelManager.RemoveChannel(onlineChannel);
-                onlineChannel.CloseAsync().Wait();
+                base.ChannelManager.CloseChannel(onlineChannel);
             }
         }
 

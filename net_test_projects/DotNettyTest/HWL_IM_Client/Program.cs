@@ -82,7 +82,6 @@ namespace HWL_IM_Client
                 }
                 catch (Exception ex)
                 {
-                    Print();
                     ClientConfig.WriteLine(ex.ToString(), ConsoleColor.Red);
                 }
             }

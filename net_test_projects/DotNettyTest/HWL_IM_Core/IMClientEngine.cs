@@ -100,7 +100,7 @@ namespace HWL_IM_Core
                 throw new Exception("The content sent through the im client cannot be empty.");
             }
 
-            if (context.Head == null)
+            if (context.Head == null && this.GlobalMessageHead != null)
             {
                 context.Head = this.GlobalMessageHead;
             }

@@ -119,6 +119,9 @@ namespace HWL_IM_Core.Server.Executor
 
         public void PushOffline(ulong toUserId, IChannel channel)
         {
+            if (this.OfflineMessageAction.GetCount(toUserId) <= 0)
+                return;
+
             while (true)
             {
                 if (!channel.IsWritable) break;

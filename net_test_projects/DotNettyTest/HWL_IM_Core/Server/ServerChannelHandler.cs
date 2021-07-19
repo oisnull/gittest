@@ -55,7 +55,7 @@ namespace HWL_IM_Core.Server
         public override void ChannelInactive(IChannelHandlerContext context)
         {
             LogHelper.Info($"Remote client {context.Channel.RemoteAddress.ToString()} disconnected.");
-            ServerOption.ChannelManager.RemoveChannel(context.Channel);
+            ServerOption.ChannelManager.CloseChannel(context.Channel);
         }
 
         public override void ExceptionCaught(IChannelHandlerContext context, Exception exception)

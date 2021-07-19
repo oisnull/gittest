@@ -18,5 +18,7 @@ namespace HWL_IM_Core.Extra
         List<ImMessageContext> GetAll(ulong userid);
 
         ImMessageContext GetFirst(ulong userid, bool remove = false);
+
+        int GetCount(ulong userid);
     }
 }

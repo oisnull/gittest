@@ -45,6 +45,17 @@ namespace HWL_IM_Core.Server
             LogHelper.Info($"Online channel total: {onlineChannels.Count}");
         }
 
+        public void CloseChannel(IChannel channel)
+        {
+            if (channel != null)
+            {
+                this.RemoveChannel(channel);
+
+                IMChannelUser.Remove(channel);
+                channel.CloseAsync().Wait();
+            }
+        }
+
         public bool IsOnline(ulong userid)
         {
             if (userid <= 0)
